@@ -28,11 +28,11 @@ def outputs2ans(outputs: np.array):
 
 
 @app.post('/file')
-async def file2type(
+def file2type(
         image: UploadFile = File(),
 ):
 
-    image = await image.read()
+    image = image.read()
     image = image_preprocessing_inference(image)
     outputs = np.array(ort_sess.run(None, {'modelInput': image}))[0]
     ans = outputs2ans(outputs)
@@ -46,7 +46,6 @@ def link2type(
     response = requests.get(url)
     image = response.content
     image = image_preprocessing_inference(image)
-
     outputs = np.array(ort_sess.run(None, {'modelInput': image}))[0]
     ans = outputs2ans(outputs)
     return ans

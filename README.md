@@ -24,7 +24,7 @@ git clone https://github.com/ArtemevIvanAlekseevich/SketchTattooClassifier
 ```bash
 docker compose up
 ```
-4. Use [client](client/client.py) ([example of using](client/example_client.py)).
+4. Use service ([example of using](example_of_using/example_of_using.py)).
 
 The service returns json like this:
 ```JSON
@@ -73,7 +73,7 @@ git clone https://github.com/ArtemevIvanAlekseevich/SketchTattooClassifier
 ```bash
 docker compose up
 ```
-4. Воспользоваться [клиентом](client/client.py) ([пример использования](client/example_client.py)).
+4. Начать использовать сервис ([пример использования](example_of_using/example_of_using.py)).
 
 Сервис возвращает json вида:
 ```JSON

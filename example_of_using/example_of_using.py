@@ -1,39 +1,21 @@
 import os
+import requests
 
 from pprint import pprint
 
-from client import ClientSketchTattooClassifier
-
 if __name__ == '__main__':
 
-    # Creating client
-    client = ClientSketchTattooClassifier()
-
-    # work with image path
-    dir_path = os.path.dirname(os.path.realpath(__file__))
-    img_path = os.path.join(dir_path, 'test.jpg')
-    pprint(client.img_path2type(img_path))
-    # result
-    '''
-    {'probabilities': {'Chicano': 0.0005174795514903963,
-                   'Engraving': 0.0012208480620756745,
-                   'Japanese': 0.001117055886425078,
-                   'Linework': 0.0035219548735767603,
-                   'Minimalist': 0.9846374988555908,
-                   'New school': 0.002163673983886838,
-                   'Other': 0.0022433940321207047,
-                   'Realism': 0.0022268760949373245,
-                   'Traditional': 0.002351153641939163},
-     'top_1': 'Minimalist',
-     'top_3': ['Minimalist', 'Linework', 'Traditional']}
-    '''
+    url = 'http://localhost:8000'
 
     # work with image
     dir_path = os.path.dirname(os.path.realpath(__file__))
     img_path = os.path.join(dir_path, 'test.jpg')
     with open(img_path, 'rb') as file:
         image = file.read()
-    pprint(client.img2type(image))
+    files = {'image': image}
+    response = requests.post(url+'/file', files=files)
+    content = response.json()
+    pprint(content)
     # result
     '''
     {'probabilities': {'Chicano': 0.0005174795514903963,
@@ -48,10 +30,15 @@ if __name__ == '__main__':
      'top_1': 'Minimalist',
      'top_3': ['Minimalist', 'Linework', 'Traditional']}
     '''
+
+
     # Work with url
     some_tattoo_url = 'https://i.pinimg.com/originals/71' +\
                       '/9d/d1/719dd1e3c24f6d89000d34053465f5a3.jpg'
-    pprint(client.img_url2type(some_tattoo_url))
+    params = {'url': some_tattoo_url}
+    response = requests.post(url+'/link', params=params)
+    content = response.json()
+    pprint(content)
     # result
     '''
     {'probabilities': {'Chicano': 0.4754016697406769,
