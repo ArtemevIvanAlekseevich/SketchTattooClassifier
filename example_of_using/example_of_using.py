@@ -31,7 +31,6 @@ if __name__ == '__main__':
      'top_3': ['Minimalist', 'Linework', 'Traditional']}
     '''
 
-
     # Work with url
     some_tattoo_url = 'https://i.pinimg.com/originals/71' +\
                       '/9d/d1/719dd1e3c24f6d89000d34053465f5a3.jpg'
